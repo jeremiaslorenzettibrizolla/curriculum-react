@@ -1,5 +1,4 @@
 import React from "react";
-import PrimaryButton from "../PrimaryButton";
 import { ImageSectionStyled } from "./styled";
 import { user } from "../../data/data";
 
@@ -35,7 +34,6 @@ function ImageSection() {
             <p>: {user.address}</p>
           </div>
         </div>
-        <PrimaryButton title={"Download Cv"} />
       </div>
     </ImageSectionStyled>
   );
