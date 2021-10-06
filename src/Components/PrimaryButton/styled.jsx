@@ -1,7 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const PrimaryButtonStyled = styled.a`
+export const PrimaryButtonStyled = styled.button`
   background-color: var(--primary-color);
+  border: none;
+  border-radius: 0.2rem;
   padding: 0.8rem 2.5rem;
   color: white;
   cursor: pointer;
@@ -11,7 +13,7 @@ export const PrimaryButtonStyled = styled.a`
   position: relative;
   transition: all 0.4s ease-in-out;
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     width: 0;
     height: 0.2rem;
