@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from 'emailjs-com';
 import { MainLayout, InnerLayout } from '../../styles/Layouts';
 import Title from '../../Components/Title';
 import PrimaryButton from '../../Components/PrimaryButton';
@@ -34,16 +35,36 @@ const Contact = () => {
     const formData = new FormData(event.target);
     const visitor = Object.fromEntries(formData);
 
-    // api.postVisitor(visitor);
-
     if (visitor.name && visitor.phone && visitor.email) {
+      sendEmail(event);
       api.postVisitor(visitor);
+      setFormValues(initialValue);
     }
 
     console.log('handleSubmit', visitor);
   };
 
   console.log('formValues', formValues);
+
+  const sendEmail = (event) => {
+    event.preventDefault();
+
+    emailjs
+      .sendForm(
+        'gmailMessage',
+        'template_vluye9q',
+        event.target,
+        'user_vhTLMlrK7gP4NEn4v9Jfq',
+      )
+      .then(
+        (result) => {
+          alert('Mensagem enviada com sucesso! 👍');
+        },
+        (error) => {
+          alert(error.message);
+        },
+      );
+  };
 
   return (
     <MainLayout>

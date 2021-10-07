@@ -1,8 +1,8 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const ContactItemStyled = styled.div`
-  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  padding: 0.2rem 2rem;
   background-color: var(--background-dark-grey);
   display: flex;
   align-items: center;
