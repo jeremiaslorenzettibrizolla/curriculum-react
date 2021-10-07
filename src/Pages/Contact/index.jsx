@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import Swal from 'sweetalert2';
 import { MainLayout, InnerLayout } from '../../styles/Layouts';
 import Title from '../../Components/Title';
 import PrimaryButton from '../../Components/PrimaryButton';
@@ -35,7 +36,9 @@ const Contact = () => {
     const formData = new FormData(event.target);
     const visitor = Object.fromEntries(formData);
 
-    if (visitor.name && visitor.phone && visitor.email) {
+    if (!visitor.name || !visitor.phone || !visitor.email) {
+      alerts('error', 'Preencha todos os campos');
+    } else {
       sendEmail(event);
       api.postVisitor(visitor);
       setFormValues(initialValue);
@@ -58,12 +61,23 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          alert('Mensagem enviada com sucesso! 👍');
+          alerts('success', 'Mensagem enviada com sucesso!');
         },
         (error) => {
-          alert(error.message);
+          alerts('error', `${error}`);
         },
       );
+  };
+
+  const alerts = (type, message) => {
+    Swal.fire({
+      position: 'top',
+      icon: `${type}`,
+      title: `${message}`,
+      showConfirmButton: false,
+      timer: 2500,
+    });
+    return;
   };
 
   return (
